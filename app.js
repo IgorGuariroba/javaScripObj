@@ -3,6 +3,7 @@ var Processor  = require("./Processor");
 var Table      = require("./Table");
 var HtmlParser = require("./HtmlParser");
 var Writer     = require("./Writer.js");
+var PDFWriter  = require("./PDFWriter.js");
 
 var leitor   = new Reader();
 var escritor = new Writer();
@@ -16,7 +17,8 @@ async function main(){
     // console.log(usuarios.ColumnCount);
     var html = await HtmlParser.Parse(usuarios);
 
-    escritor.Writer("meuhtmlgerado.html",html);
+    escritor.Writer(Date.now() + ".html",html);
+    PDFWriter.WritePDF(Date.now() + ".pdf",html);
 }
 
 main();
